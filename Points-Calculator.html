@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRS Points Calculator | Canada Immigration Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2C3E50;
+            --secondary: #E74C3C;
+            --accent: #3498DB;
+            --light: #ECF0F1;
+            --dark: #1A252F;
+            --text: #333333;
+            --text-light: #7F8C8D;
+            --white: #FFFFFF;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+        
+        nav a:hover:after, nav a.active:after {
+            width: 100%;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--secondary);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .page-hero {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 152, 219, 0.8) 100%), url('https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1201&q=80') no-repeat center center/cover;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .page-hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            text-align: center;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--white);
+            border: 2px solid var(--secondary);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--white);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--secondary);
+            border: 2px solid var(--secondary);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+        
+        .btn-large {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+        
+        /* Calculator Section */
+        .calculator-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .calculator-container {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .calculator-header {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .calculator-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .calculator-body {
+            padding: 40px;
+        }
+        
+        .calculator-progress {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        .calculator-progress:before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--light);
+            z-index: 1;
+        }
+        
+        .progress-step {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .progress-step.active .step-number {
+            background-color: var(--secondary);
+            color: var(--white);
+        }
+        
+        .progress-step.active .step-title {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .step-number {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light);
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+        
+        .step-title {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            transition: var(--transition);
+        }
+        
+        /* Form Styles */
+        .form-step {
+            display: none;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        .form-step h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .form-step p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input[type="number"],
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+        }
+        
+        .navigation-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        /* Results Section */
+        .results-section {
+            display: none;
+            padding: 40px;
+        }
+        
+        .results-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .results-header h2 {
+            font-size: 2rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .score-display {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .score-display span {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--secondary);
+            display: block;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+        
+        .score-breakdown {
+            background-color: var(--light);
+            border-radius: var(--radius);
+            padding: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .score-breakdown h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        .breakdown-item:last-child {
+            border-bottom: none;
+        }
+        
+        .breakdown-item .category {
+            font-weight: 500;
+        }
+        
+        .breakdown-item .points {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        .recommendations h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        .recommendations ul {
+            margin-left: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .recommendations li {
+            margin-bottom: 10px;
+        }
+        
+        /* Info Grid */
+        .calculator-info {
+            padding: 60px 0;
+            background-color: var(--light);
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .info-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .info-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .info-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
+        }
+        
+        .info-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .info-card p {
+            color: var(--text-light);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+        }
+        
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-col a i {
+            font-size: 0.8rem;
+        }
+        
+        .footer-col a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item i {
+            color: var(--secondary);
+            margin-top: 3px;
+        }
+        
+        .contact-item a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+        
+        .contact-item a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom .disclaimer {
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .footer-bottom a {
+            color: var(--secondary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .page-hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .calculator-progress {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+            
+            .progress-step {
+                flex: 0 0 calc(33.333% - 20px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .page-hero p {
+                font-size: 1rem;
+            }
+            
+            .calculator-body {
+                padding: 30px 20px;
+            }
+            
+            .progress-step {
+                flex: 0 0 calc(50% - 20px);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .progress-step {
+                flex: 0 0 100%;
+            }
+            
+            .navigation-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .navigation-buttons button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="1.png" alt="Canada Immigration Logo">
+                <h2>Canada Immigration Portal</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Programs.html">Programs</a></li>
+                    <li><a href="Points-Calculator.html" class="active">Points Calculator</a></li>
+                    <li><a href="Resources.html">Resources</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Comprehensive Ranking System (CRS) Calculator</h1>
+            <p>Calculate your Express Entry score and see how you compare to recent draws</p>
+            <a href="#calculator" class="btn btn-primary">Start Calculator Now</a>
+        </div>
+    </section>
+
+    <section id="calculator" class="calculator-section">
+        <div class="container">
+            <div class="calculator-container">
+                <div class="calculator-header">
+                    <h2>Express Entry Points Calculator</h2>
+                    <p>Comprehensive Ranking System (CRS) Assessment</p>
+                </div>
+                
+                <div class="calculator-body">
+                    <div class="calculator-progress">
+                        <div class="progress-step active">
+                            <div class="step-number">1</div>
+                            <div class="step-title">Program</div>
+                        </div>
+                        <div class="progress-step">
+                            <div class="step-number">2</div>
+                            <div class="step-title">Personal</div>
+                        </div>
+                        <div class="progress-step">
+                            <div class="step-number">3</div>
+                            <div class="step-title">Education</div>
+                        </div>
+                        <div class="progress-step">
+                            <div class="step-number">4</div>
+                            <div class="step-title">Language</div>
+                        </div>
+                        <div class="progress-step">
+                            <div class="step-number">5</div>
+                            <div class="step-title">Experience</div>
+                        </div>
+                        <div class="progress-step">
+                            <div class="step-number">6</div>
+                            <div class="step-title">Additional</div>
+                        </div>
+                    </div>
+                    
+                    <form id="points-calculator-form">
+                        <!-- Step 1: Program Selection -->
+                        <div class="form-step active" id="step-1">
+                            <h3>Select Immigration Program</h3>
+                            <p>Choose the Canadian immigration program you're interested in applying for.</p>
+                            
+                            <div class="form-group">
+                                <label for="program">Immigration Program:</label>
+                                <select id="program" name="program" required>
+                                    <option value="">Select a program</option>
+                                    <option value="express-entry">Express Entry - Federal Skilled Worker</option>
+                                    <option value="express-entry-trades">Express Entry - Federal Skilled Trades</option>
+                                    <option value="express-entry-cec">Express Entry - Canadian Experience Class</option>
+                                    <option value="pnp">Provincial Nominee Program</option>
+                                </select>
+                            </div>
+                            
+                            <div class="navigation-buttons">
+                                <div></div>
+                                <button type="button" class="btn btn-primary" onclick="nextStep(1)">Next</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 2: Personal Information -->
+                        <div class="form-step" id="step-2">
+                            <h3>Personal Information</h3>
+                            <p>Provide details about your personal situation.</p>
+                            
+                            <div class="form-group">
+                                <label for="age">Age:</label>
+                                <input type="number" id="age" name="age" min="18" max="100" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="marital-status">Marital Status:</label>
+                                <select id="marital-status" name="marital-status" required>
+                                    <option value="">Select your status</option>
+                                    <option value="single">Single</option>
+                                    <option value="married">Married/Common-Law</option>
+                                </select>
+                            </div>
+                            
+                            <div id="spouse-container" style="display: none;">
+                                <h4>Spouse Information</h4>
+                                <div class="form-group">
+                                    <label for="spouse-coming">Is your spouse/partner coming with you to Canada?</label>
+                                    <select id="spouse-coming" name="spouse-coming">
+                                        <option value="yes">Yes</option>
+                                        <option value="no">No</option>
+                                    </select>
+                                </div>
+                            </div>
+                            
+                            <div class="navigation-buttons">
+                                <button type="button" class="btn btn-secondary" onclick="prevStep(2)">Previous</button>
+                                <button type="button" class="btn btn-primary" onclick="nextStep(2)">Next</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: Education -->
+                        <div class="form-step" id="step-3">
+                            <h3>Education</h3>
+                            <p>Provide details about your highest level of education.</p>
+                            
+                            <div class="form-group">
+                                <label for="education">Highest Level of Education:</label>
+                                <select id="education" name="education" required>
+                                    <option value="">Select education level</option>
+                                    <option value="less-secondary">Less than secondary school</option>
+                                    <option value="secondary">Secondary diploma</option>
+                                    <option value="one-year">One-year degree, diploma or certificate</option>
+                                    <option value="two-year">Two-year program</option>
+                                    <option value="bachelors">Bachelor's degree</option>
+                                    <option value="two-or-more">Two or more certificates, diplomas, or degrees</option>
+                                    <option value="masters">Master's degree</option>
+                                    <option value="doctoral">Doctoral degree (PhD)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="canadian-education">Do you have Canadian educational credentials?</label>
+                                <select id="canadian-education" name="canadian-education" required>
+                                    <option value="no">No</option>
+                                    <option value="less-than-one-year">Yes, less than a one-year program</option>
+                                    <option value="one-or-two-year">Yes, a one or two-year program</option>
+                                    <option value="three-or-more">Yes, a program of three years or longer</option>
+                                </select>
+                            </div>
+                            
+                            <div class="navigation-buttons">
+                                <button type="button" class="btn btn-secondary" onclick="prevStep(3)">Previous</button>
+                                <button type="button" class="btn btn-primary" onclick="nextStep(3)">Next</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 4: Language Skills -->
+                        <div class="form-step" id="step-4">
+                            <h3>Language Skills</h3>
+                            <p>Provide your language proficiency test scores.</p>
+                            
+                            <h4>First Official Language (English or French)</h4>
+                            <div class="form-group">
+                                <label for="first-language">Language Test:</label>
+                                <select id="first-language" name="first-language" required>
+                                    <option value="">Select test</option>
+                                    <option value="ielts">IELTS</option>
+                                    <option value="celpip">CELPIP</option>
+                                    <option value="tef">TEF Canada</option>
+                                    <option value="tcf">TCF Canada</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="reading">Reading Score (CLB level):</label>
+                                <input type="number" id="reading" name="reading" min="1" max="12" placeholder="e.g., 7, 8, 9" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="writing">Writing Score (CLB level):</label>
+                                <input type="number" id="writing" name="writing" min="1" max="12" placeholder="e.g., 7, 8, 9" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="listening">Listening Score (CLB level):</label>
+                                <input type="number" id="listening" name="listening" min="1" max="12" placeholder="e.g., 7, 8, 9" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="speaking">Speaking Score (CLB level):</label>
+                                <input type="number" id="speaking" name="speaking" min="1" max="12" placeholder="e.g., 7, 8, 9" required>
+                            </div>
+                            
+                            <h4>Second Official Language (Optional)</h4>
+                            <div class="form-group">
+                                <label for="second-language">Do you have scores for the second official language?</label>
+                                <select id="second-language" name="second-language">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            
+                            <div id="second-language-container" style="display: none;">
+                                <!-- Second language inputs would appear here when "Yes" is selected -->
+                            </div>
+                            
+                            <div class="navigation-buttons">
+                                <button type="button" class="btn btn-secondary" onclick="prevStep(4)">Previous</button>
+                                <button type="button" class="btn btn-primary" onclick="nextStep(4)">Next</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 5: Work Experience -->
+                        <div class="form-step" id="step-5">
+                            <h3>Work Experience</h3>
+                            <p>Provide details about your relevant work experience.</p>
+                            
+                            <div class="form-group">
+                                <label for="foreign-experience">Foreign Work Experience (years):</label>
+                                <select id="foreign-experience" name="foreign-experience" required>
+                                    <option value="0">Less than 1 year</option>
+                                    <option value="1">1 year</option>
+                                    <option value="2">2 years</option>
+                                    <option value="3">3 years</option>
+                                    <option value="4">4 years</option>
+                                    <option value="5">5 years or more</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="canadian-experience">Canadian Work Experience (years):</label>
+                                <select id="canadian-experience" name="canadian-experience" required>
+                                    <option value="0">None</option>
+                                    <option value="1">1 year</option>
+                                    <option value="2">2 years</option>
+                                    <option value="3">3 years</option>
+                                    <option value="4">4 years</option>
+                                    <option value="5">5 years or more</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="noc-skill-type">NOC Skill Type/Level:</label>
+                                <select id="noc-skill-type" name="noc-skill-type" required>
+                                    <option value="">Select NOC category</option>
+                                    <option value="0">TEER 0 (Management)</option>
+                                    <option value="1">TEER 1 (Professional)</option>
+                                    <option value="2">TEER 2 (Technical)</option>
+                                    <option value="3">TEER 3 (Technical and skilled trades)</option>
+                                    <option value="4">TEER 4 (Intermediate)</option>
+                                    <option value="5">TEER 5 (Entry level)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="navigation-buttons">
+                                <button type="button" class="btn btn-secondary" onclick="prevStep(5)">Previous</button>
+                                <button type="button" class="btn btn-primary" onclick="nextStep(5)">Next</button>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 6: Additional Factors -->
+                        <div class="form-step" id="step-6">
+                            <h3>Additional Factors</h3>
+                            <p>Provide information about additional factors that may affect your score.</p>
+                            
+                            <div class="form-group">
+                                <label for="provincial-nomination">Do you have a provincial nomination?</label>
+                                <select id="provincial-nomination" name="provincial-nomination" required>
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="job-offer">Do you have a valid job offer in Canada?</label>
+                                <select id="job-offer" name="job-offer" required>
+                                    <option value="no">No</option>
+                                    <option value="noc-00">Yes, NOC TEER 0</option>
+                                    <option value="noc-0">Yes, NOC TEER 1</option>
+                                    <option value="noc-a">Yes, NOC TEER 2</option>
+                                    <option value="noc-b">Yes, NOC TEER 3</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="canadian-relatives">Do you have siblings who are Canadian citizens or permanent residents living in Canada?</label>
+                                <select id="canadian-relatives" name="canadian-relatives" required>
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            
+                            <div class="navigation-buttons">
+                                <button type="button" class="btn btn-secondary" onclick="prevStep(6)">Previous</button>
+                                <button type="button" class="btn btn-primary" onclick="calculatePoints()">Calculate Points</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
+                <!-- Results Section (initially hidden) -->
+                <div class="results-section" id="results-section">
+                    <div class="results-header">
+                        <h2>Your CRS Score Results</h2>
+                        <p>Based on the information you provided, here is your Comprehensive Ranking System score:</p>
+                    </div>
+                    
+                    <div class="score-display">
+                        <span id="total-score">0</span> / 1200
+                    </div>
+                    
+                    <div class="score-breakdown">
+                        <h3>Score Breakdown</h3>
+                        
+                        <div class="breakdown-item">
+                            <div class="category">Core Human Capital Factors</div>
+                            <div class="points"><span id="core-points">0</span> points</div>
+                        </div>
+                        
+                        <div class="breakdown-item">
+                            <div class="category">Spouse Factors</div>
+                            <div class="points"><span id="spouse-points">0</span> points</div>
+                        </div>
+                        
+                        <div class="breakdown-item">
+                            <div class="category">Skill Transferability</div>
+                            <div class="points"><span id="skill-points">0</span> points</div>
+                        </div>
+                        
+                        <div class="breakdown-item">
+                            <div class="category">Additional Points</div>
+                            <div class="points"><span id="additional-points">0</span> points</div>
+                        </div>
+                    </div>
+                    
+                    <div class="recommendations">
+                        <h3>What does this score mean?</h3>
+                        <div id="score-interpretation">
+                            <p>Your score will be assessed against the CRS cut-off in Express Entry draws. Recent draws have had cut-offs ranging from 450-480 points.</p>
+                        </div>
+                        
+                        <h3>Recommendations to Improve Your Score</h3>
+                        <div id="recommendations-list">
+                            <ul>
+                                <li>Improve your language test scores, particularly in your first official language</li>
+                                <li>Gain additional Canadian work experience</li>
+                                <li>Pursue higher education or Canadian education</li>
+                                <li>Obtain a provincial nomination (adds 600 points)</li>
+                                <li>Secure a valid job offer from a Canadian employer</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="navigation-buttons">
+                            <button type="button" class="btn btn-secondary" onclick="resetCalculator()">Start Over</button>
+                            <button type="button" class="btn btn-primary" onclick="downloadResults()">Download Results (PDF)</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="calculator-info">
+        <div class="container">
+            <div class="info-grid">
+                <div class="info-card">
+                    <i class="fas fa-info-circle"></i>
+                    <h3>About the CRS Score</h3>
+                    <p>The Comprehensive Ranking System is used to assess and score your profile for Express Entry. Scores range from 0 to 1200.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Recent Draw Cutoffs</h3>
+                    <p>Latest CRS cutoffs: 472 (All-program), 358 (PNP-only), 486 (CEC-only). Updated weekly.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-lightbulb"></i>
+                    <h3>Improving Your Score</h3>
+                    <p>Ways to increase your score: improve language tests, gain Canadian experience, get a provincial nomination.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Need Help Understanding Your Results?</h2>
+            <p>Our immigration consultants can review your score and suggest the best strategies for your situation.</p>
+            <a href="Contact.html" class="btn btn-large">Contact an Expert</a>
+        </div>
+    </section>
+
+    
+
+     <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <img src="1.png" alt="Canada Logo">
+                        
+                    </div>
+                    <p>Your trusted resource for Canadian immigration information and tools.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="Programs.html"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                        <li><a href="Points-Calculator.html"><i class="fas fa-chevron-right"></i> Points Calculator</a></li>
+                        <li><a href="Resources.html"><i class="fas fa-chevron-right"></i> Resources</a></li>
+                        <li><a href="Contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Disclaimer</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@canadaimmigrationportal.com">info@canadaimmigrationportal.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+18001234567">+1 (800) 123-4567</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Immigration Rd<br>Ottawa, ON</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Canada Immigration Portal. All rights reserved.</p>
+                <p class="disclaimer">Disclaimer: This website is not affiliated with the Government of Canada. For official information, please visit <a href="https://www.canada.ca" target="_blank">canada.ca</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="calculator.js"></script>
+</body>
+</html>

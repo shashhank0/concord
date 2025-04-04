@@ -3,517 +3,732 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Concord Canada Immigration</title>
+    <title>Canadian Immigration Points Calculator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-color: #61CE70;
-            --primary-dark: #4CAF50;
-            --text-color: #333;
-            --text-light: #777;
-            --bg-light: #f9f9f9;
-            --white: #ffffff;
-            --dark: #222;
-            --footer-bg: #1a1a1a;
-            --footer-text: #ccc;
+    --primary-dark: #4CAF50;
+    --text-color: #333;
+    --text-light: #777;
+    --bg-light: #f9f9f9;
+    --white: #ffffff;
+    --dark: #222;
+    --footer-bg: #1a1a1a;
+    --footer-text: #ccc;
+
         }
         
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
         }
         
         body {
-            color: var(--text-color);
-            background-color: var(--bg-light);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            background-color: var(--light);
         }
         
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
         header {
             background-color: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: var(--shadow);
             position: sticky;
             top: 0;
             z-index: 100;
         }
         
-        .container {
-            width: 85%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .header-content {
+        .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 0;
+            padding: 20px 0;
         }
         
         .logo {
             display: flex;
             align-items: center;
+            gap: 15px;
         }
         
         .logo img {
-            height: 50px;
-            margin-right: 10px;
+            height: 40px;
         }
         
-        .logo h1 {
-            color: var(--primary-dark);
-            font-size: 24px;
-        }
-        
-        nav {
-            display: flex;
+        .logo h2 {
+            font-size: 1.5rem;
+            color: var(--primary);
+            font-weight: 700;
         }
         
         nav ul {
             display: flex;
             list-style: none;
-        }
-        
-        nav li {
-            position: relative;
+            gap: 30px;
         }
         
         nav a {
             text-decoration: none;
-            color: var(--text-color);
-            font-weight: 600;
-            padding: 15px 20px;
-            display: block;
-            transition: color 0.3s;
+            color: var(--text);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: var(--transition);
         }
         
-        nav a:hover {
-            color: var(--primary-color);
-        }
-        
-        .dropdown-menu {
+        nav a:after {
+            content: '';
             position: absolute;
-            top: 100%;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
             left: 0;
-            background-color: var(--white);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-            width: 250px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(10px);
-            transition: all 0.3s ease;
-            z-index: 10;
+            background-color: var(--secondary);
+            transition: var(--transition);
         }
         
-        .dropdown:hover .dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+        nav a:hover:after, nav a.active:after {
+            width: 100%;
         }
         
-        .dropdown-menu a {
-            padding: 12px 20px;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+        nav a:hover, nav a.active {
+            color: var(--secondary);
         }
         
-        .dropdown-menu a:hover {
-            background-color: var(--bg-light);
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
         
+        /* Hero Section */
         .hero {
-            background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('/api/placeholder/1200/600');
-            background-size: cover;
-            background-position: center;
-            height: 60vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 152, 219, 0.8) 100%), url('https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1201&q=80') no-repeat center center/cover;
             color: var(--white);
-            padding: 0 20px;
+            padding: 100px 0;
+            text-align: center;
         }
         
-        .hero-content {
-            max-width: 800px;
-        }
-        
-        .hero h2 {
-            font-size: 48px;
+        .hero h1 {
+            font-size: 3rem;
             margin-bottom: 20px;
         }
         
         .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
         }
         
+        .hero-btns {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+        }
+        
+        /* Buttons */
         .btn {
             display: inline-block;
-            background-color: var(--primary-color);
-            color: var(--white);
             padding: 12px 30px;
-            border-radius: 5px;
-            text-decoration: none;
+            border-radius: var(--radius);
             font-weight: 600;
-            transition: background-color 0.3s;
-        }
-        
-        .btn:hover {
-            background-color: var(--primary-dark);
-        }
-        
-        .section {
-            padding: 80px 0;
-        }
-        
-        .section-title {
+            text-decoration: none;
+            transition: var(--transition);
             text-align: center;
-            margin-bottom: 50px;
         }
         
-        .section-title h2 {
-            font-size: 36px;
-            color: var(--text-color);
-            position: relative;
-            padding-bottom: 15px;
+        .btn-primary {
+            background-color: var(--secondary);
+            color: var(--white);
+            border: 2px solid var(--secondary);
         }
         
-        .section-title h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 3px;
-            background-color: var(--primary-color);
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--white);
         }
         
-        .services {
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--white);
+            border: 2px solid var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--white);
+            color: var(--primary);
+        }
+        
+        .btn-large {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+        }
+        
+        /* Features */
+        .features {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .features .container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
         }
         
-        .service-card {
+        .feature-card {
             background-color: var(--white);
-            border-radius: 8px;
-            overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-radius: var(--radius);
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
         
-        .service-card:hover {
+        .feature-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
         }
         
-        .service-card img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
+        .feature-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 20px;
         }
         
-        .service-content {
-            padding: 20px;
-        }
-        
-        .service-content h3 {
-            font-size: 22px;
+        .feature-card h3 {
+            font-size: 1.5rem;
             margin-bottom: 15px;
-            color: var(--text-color);
         }
         
-        .service-content p {
+        .feature-card p {
             color: var(--text-light);
-            margin-bottom: 15px;
-            line-height: 1.6;
+            margin-bottom: 20px;
         }
         
-        .service-content a {
-            color: var(--primary-color);
-            text-decoration: none;
+        .btn-link {
+            color: var(--accent);
             font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            transition: var(--transition);
         }
         
-        footer {
-            background-color: var(--footer-bg);
-            color: var(--footer-text);
-            padding: 60px 0 20px;
+        .btn-link:hover {
+            color: var(--secondary);
+            gap: 10px;
         }
         
-        .footer-content {
+        /* News Section */
+        .news-section {
+            padding: 80px 0;
+            background-color: var(--light);
+        }
+        
+        .news-section h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            color: var(--primary);
+        }
+        
+        .news-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .news-card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .news-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .news-card .news-date {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+        
+        .news-card-content {
+            padding: 25px;
+        }
+        
+        .news-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .news-card p {
+            color: var(--text-light);
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .testimonials h2 {
+            text-align: center;
+            margin-bottom: 50px;
+            font-size: 2.2rem;
+            color: var(--primary);
+        }
+        
+        .testimonial-slider {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding-bottom: 20px;
+            scroll-snap-type: x mandatory;
+        }
+        
+        .testimonial {
+            flex: 0 0 calc(50% - 15px);
+            background-color: var(--light);
+            border-radius: var(--radius);
+            padding: 30px;
+            scroll-snap-align: start;
+            box-shadow: var(--shadow);
+        }
+        
+        .testimonial img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .testimonial p:before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--secondary);
+            opacity: 0.2;
+            position: absolute;
+            top: -20px;
+            left: -10px;
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--secondary);
+        }
+        
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: var(--white);
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 40px;
             margin-bottom: 40px;
         }
         
-        .footer-column h3 {
-            font-size: 20px;
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
             margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.3rem;
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
             color: var(--white);
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
         }
         
-        .footer-column p {
-            line-height: 1.6;
-            margin-bottom: 15px;
+        .social-links a:hover {
+            background-color: var(--secondary);
         }
         
-        .footer-column ul {
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary);
+        }
+        
+        .footer-col ul {
             list-style: none;
         }
         
-        .footer-column ul li {
+        .footer-col li {
             margin-bottom: 10px;
         }
         
-        .footer-column ul a {
-            color: var(--footer-text);
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            transition: color 0.3s;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        .footer-column ul a:hover {
-            color: var(--primary-color);
+        .footer-col a i {
+            font-size: 0.8rem;
         }
         
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-
-        /* Points Calculator specific styles */
-        .calculator-container {
-            background-color: var(--white);
-            border-radius: 10px;
-            padding: 30px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        .footer-col a:hover {
+            color: var(--white);
+            padding-left: 5px;
         }
         
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-        }
-        
-        select.form-control {
-            appearance: none;
-            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
-            background-repeat: no-repeat;
-            background-position: right 15px center;
-            background-size: 15px;
-        }
-        
-        .result-box {
-            background-color: var(--bg-light);
-            border-radius: 8px;
-            padding: 20px;
-            margin-top: 30px;
-            text-align: center;
-        }
-        
-        .result-box h3 {
-            color: var(--primary-dark);
-            margin-bottom: 10px;
-        }
-        
-        .result-points {
-            font-size: 36px;
-            font-weight: 700;
-            color: var(--primary-color);
-            margin: 10px 0;
-        }
-        
-        .result-message {
-            color: var(--text-light);
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
             margin-bottom: 15px;
         }
         
-        /* Mobile responsive */
+        .contact-item i {
+            color: var(--secondary);
+            margin-top: 3px;
+        }
+        
+        .contact-item a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+        
+        .contact-item a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom .disclaimer {
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .footer-bottom a {
+            color: var(--secondary);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .testimonial {
+                flex: 0 0 calc(100% - 15px);
+            }
+        }
+        
         @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                text-align: center;
-            }
-            
             nav ul {
-                flex-direction: column;
-                width: 100%;
-            }
-            
-            .dropdown-menu {
-                position: static;
-                width: 100%;
-                opacity: 1;
-                visibility: visible;
-                transform: none;
-                box-shadow: none;
                 display: none;
             }
             
-            .dropdown:hover .dropdown-menu {
+            .mobile-menu-btn {
                 display: block;
             }
             
-            .hero h2 {
-                font-size: 32px;
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <div class="container">
-            <div class="header-content">
-                <div class="logo">
-                    <img src="/api/placeholder/200/50" alt="Concord Canada Immigration Logo">
-                    <h1>Concord Canada Immigration</h1>
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li class="dropdown">
-                            <a href="live-in-canada.html">Live in Canada</a>
-                            <div class="dropdown-menu">
-                                <a href="#workpermits" class="program-link">Work Permits</a>
-                                <a href="#business" class="program-link">Business Immigration</a>
-                                <a href="#pnp" class="program-link">Provincial Nominee Programs</a>
-                                <a href="#express" class="program-link">Express Entry</a>
-                                <a href="#refusals" class="program-link">Refusals & Appeal</a>
-                                <a href="#skilled" class="program-link">Skilled Immigration</a>
-                                <a href="#visitor" class="program-link">Visitor Visa</a>
-                                <a href="#family" class="program-link">Family Sponsorship</a>
-                            </div>
-                        </li>
-                        <li><a href="points-calculator.html">Points Calculator</a></li>
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </nav>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="1.png" alt="Canada Immigration Logo">
+                <h2>Canada Immigration Portal</h2>
             </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="Programs.html">Programs</a></li>
+                    <li><a href="Points-Calculator.html">Points Calculator</a></li>
+                    <li><a href="Resources.html">Resources</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
         </div>
     </header>
 
     <section class="hero">
-        <div class="hero-content">
-            <h2>Your Journey to Canada Starts Here</h2>
-            <p>Concord Canada Immigration provides expert guidance on all pathways to Canadian immigration. Let us help you start your new life in Canada.</p>
-            <a href="contact.html" class="btn">Free Consultation</a>
-        </div>
-    </section>
-
-    <section class="section">
         <div class="container">
-            <div class="section-title">
-                <h2>Our Immigration Services</h2>
-            </div>
-            <div class="services">
-                <div class="service-card">
-                    <img src="/api/placeholder/400/200" alt="Express Entry">
-                    <div class="service-content">
-                        <h3>Express Entry</h3>
-                        <p>Canada's flagship immigration system for skilled workers. Get selected based on your skills, education, and experience.</p>
-                        <a href="#express">Learn More →</a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="/api/placeholder/400/200" alt="Family Sponsorship">
-                    <div class="service-content">
-                        <h3>Family Sponsorship</h3>
-                        <p>Reunite with your loved ones in Canada. Sponsor your spouse, children, parents, or grandparents.</p>
-                        <a href="#family">Learn More →</a>
-                    </div>
-                </div>
-                <div class="service-card">
-                    <img src="/api/placeholder/400/200" alt="Provincial Nominee Programs">
-                    <div class="service-content">
-                        <h3>Provincial Nominee Programs</h3>
-                        <p>Each Canadian province has its own immigration streams targeting specific skills and experiences.</p>
-                        <a href="#pnp">Learn More →</a>
-                    </div>
-                </div>
+            <h1>Your Canadian Dream Starts Here</h1>
+            <p>Navigate your immigration journey with confidence using our comprehensive tools and resources.</p>
+            <div class="hero-btns">
+                <a href="Points-Calculator.html" class="btn btn-primary">Check Your Eligibility</a>
+                <a href="Programs.html" class="btn btn-secondary">Explore Programs</a>
             </div>
         </div>
     </section>
 
-    <section class="section" style="background-color: var(--white);">
+    <section class="features">
         <div class="container">
-            <div class="section-title">
-                <h2>Why Choose Concord Canada Immigration?</h2>
+            <div class="feature-card">
+                <i class="fas fa-calculator"></i>
+                <h3>Points Calculator</h3>
+                <p>Calculate your Comprehensive Ranking System (CRS) score for Express Entry with our advanced tool.</p>
+                <a href="Points-Calculator.html" class="btn-link">Try Now <i class="fas fa-arrow-right"></i></a>
             </div>
-            <div class="services">
-                <div class="service-card">
-                    <div class="service-content">
-                        <h3>Experienced Team</h3>
-                        <p>Our immigration specialists have years of experience helping people successfully immigrate to Canada.</p>
+            <div class="feature-card">
+                <i class="fas fa-passport"></i>
+                <h3>Immigration Programs</h3>
+                <p>Discover all pathways to permanent residency tailored to your qualifications.</p>
+                <a href="Programs.html" class="btn-link">Learn More <i class="fas fa-arrow-right"></i></a>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-book"></i>
+                <h3>Resources</h3>
+                <p>Access essential guides, checklists and official information for your application.</p>
+                <a href="Resources.html" class="btn-link">View Resources <i class="fas fa-arrow-right"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section class="news-section">
+        <div class="container">
+            <h2>Latest Immigration Updates</h2>
+            <div class="news-grid">
+                <div class="news-card">
+                    <div class="news-date">June 15, 2025</div>
+                    <div class="news-card-content">
+                        <h3>Express Entry Draw #285 Results</h3>
+                        <p>CRS cutoff score drops to 472 in latest all-program draw with 3,500 invitations issued.</p>
                     </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-content">
-                        <h3>Personalized Service</h3>
-                        <p>We create customized immigration plans tailored to your unique situation and goals.</p>
+                <div class="news-card">
+                    <div class="news-date">June 1, 2025</div>
+                    <div class="news-card-content">
+                        <h3>New PNP Streams Announced</h3>
+                        <p>Ontario and BC introduce new provincial nominee streams targeting tech and healthcare workers.</p>
                     </div>
                 </div>
-                <div class="service-card">
-                    <div class="service-content">
-                        <h3>High Success Rate</h3>
-                        <p>Our proven track record shows our commitment to helping clients achieve their Canadian dreams.</p>
+                <div class="news-card">
+                    <div class="news-date">May 20, 2025</div>
+                    <div class="news-card-content">
+                        <h3>Language Test Updates</h3>
+                        <p>IRCC announces changes to approved language tests effective January 2026.</p>
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <h2>Success Stories</h2>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Maria K.">
+                    <p>"The points calculator helped me understand exactly what I needed to improve. With its guidance, I boosted my CRS score by 45 points and received my ITA within 3 months. Today I'm a permanent resident living in Toronto!"</p>
+                    <div class="testimonial-author">- Maria K., from Philippines</div>
+                </div>
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Ahmed R.">
+                    <p>"The detailed program guides made the complex application process so much clearer. The document checklist saved me from multiple potential mistakes. Highly recommended resource for anyone navigating Canadian immigration!"</p>
+                    <div class="testimonial-author">- Ahmed R., from Egypt</div>
+                </div>
+                <div class="testimonial">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sophie L.">
+                    <p>"As an international student, the study permit guide was invaluable. Now graduated, I used the Canadian Experience Class resources to transition to PR seamlessly. This portal was with me every step of the way."</p>
+                    <div class="testimonial-author">- Sophie L., from France</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Begin Your Canadian Journey?</h2>
+            <p>Take the first step with our free assessment tool to determine your eligibility for Canadian immigration programs.</p>
+            <a href="Points-Calculator.html" class="btn btn-primary btn-large">Start Free Assessment</a>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h3>About Concord</h3>
-                    <p>Concord Canada Immigration is dedicated to providing professional immigration services to individuals and families looking to move to Canada.</p>
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <img src="1.png" alt="Canada Logo">
+                        
+                    </div>
+                    <p>Your trusted resource for Canadian immigration information and tools.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
                 </div>
-                <div class="footer-column">
-                    <h3>Quick Links</h3>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
                     <ul>
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="live-in-canada.html">Live in Canada</a></li>
-                        <li><a href="points-calculator.html">Points Calculator</a></li>
-                        <li><a href="about-us.html">About Us</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="Programs.html"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                        <li><a href="Points-Calculator.html"><i class="fas fa-chevron-right"></i> Points Calculator</a></li>
+                        <li><a href="Resources.html"><i class="fas fa-chevron-right"></i> Resources</a></li>
+                        <li><a href="Contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3>Immigration Programs</h3>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
                     <ul>
-                        <li><a href="#express">Express Entry</a></li>
-                        <li><a href="#family">Family Sponsorship</a></li>
-                        <li><a href="#pnp">Provincial Nominee Programs</a></li>
-                        <li><a href="#business">Business Immigration</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Disclaimer</a></li>
                     </ul>
                 </div>
-                <div class="footer-column">
-                    <h3>Contact Info</h3>
-                    <p>123 Immigration Street<br>Toronto, ON M5V 2H1<br>Canada</p>
-                    <p>Phone: (123) 456-7890<br>Email: info@concordimmigration.ca</p>
+                
+                <div class="footer-col footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@canadaimmigrationportal.com">info@canadaimmigrationportal.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+18001234567">+1 (800) 123-4567</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Immigration Rd<br>Ottawa, ON</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="copyright">
-                <p>© 2025 Concord Canada Immigration. All Rights Reserved.</p>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Canada Immigration Portal. All rights reserved.</p>
+                <p class="disclaimer">Disclaimer: This website is not affiliated with the Government of Canada. For official information, please visit <a href="https://www.canada.ca" target="_blank">canada.ca</a>.</p>
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        // Testimonial slider navigation
+        // This would be enhanced with a proper slider library in production
+    </script>
 </body>
 </html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | Canada Immigration Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="https://www.canada.ca/etc/designs/canada/wet-boew/assets/sig-blk-en.svg" alt="Canada Immigration Logo">
+                <h2>Canada Immigration Portal</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Programs.html">Programs</a></li>
+                    <li><a href="Points-Calculator.html">Points Calculator</a></li>
+                    <li><a href="Resources.html">Resources</a></li>
+                    <li><a href="Contact.html" class="active">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Contact Our Immigration Experts</h1>
+            <p>Get personalized advice and answers to your Canadian immigration questions</p>
+        </div>
+    </section>
+
+    <section class="contact-section">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-form">
+                    <h2>Send Us a Message</h2>
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number (optional)</label>
+                            <input type="tel" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subject</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Select a topic</option>
+                                <option value="general">General Inquiry</option>
+                                <option value="express-entry">Express Entry</option>
+                                <option value="pnp">Provincial Nominee Program</option>
+                                <option value="sponsorship">Family Sponsorship</option>
+                                <option value="work-permit">Work Permit</option>
+                                <option value="study-permit">Study Permit</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Your Message</label>
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Send Message</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <h2>Contact Information</h2>
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <h3>Our Office</h3>
+                        <p>123 Immigration Road<br>Suite 200<br>Ottawa, ON K1A 0B1</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <h3>Phone</h3>
+                        <p>+1 (800) 123-4567<br>Monday-Friday: 9am-5pm EST</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Email</h3>
+                        <p>info@canadaimmigrationportal.com<br>We typically respond within 24 hours</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-calendar-alt"></i>
+                        <h3>Book a Consultation</h3>
+                        <p>Schedule a one-on-one video consultation with our RCIC-certified consultants.</p>
+                        <a href="#" class="btn btn-small">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <h2>Our Immigration Consultants</h2>
+            <p class="section-subtitle">All our consultants are Regulated Canadian Immigration Consultants (RCIC) in good standing with the College of Immigration and Citizenship Consultants (CICC).</p>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://randomuser.me/api/portraits/women/45.jpg" alt="Sarah Johnson">
+                    <h3>Sarah Johnson</h3>
+                    <p class="title">Senior Immigration Consultant</p>
+                    <p class="bio">10+ years experience with Express Entry and PNP applications. Fluent in English and French.</p>
+                    <div class="expertise">
+                        <span class="expertise-tag">Express Entry</span>
+                        <span class="expertise-tag">PNP</span>
+                        <span class="expertise-tag">CEC</span>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Chen">
+                    <h3>David Chen</h3>
+                    <p class="title">Business Immigration Specialist</p>
+                    <p class="bio">Expert in Start-Up Visa, Self-Employed, and Investor programs. Mandarin speaker.</p>
+                    <div class="expertise">
+                        <span class="expertise-tag">Start-Up Visa</span>
+                        <span class="expertise-tag">Investor</span>
+                        <span class="expertise-tag">Entrepreneur</span>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Maria Gonzalez">
+                    <h3>Maria Gonzalez</h3>
+                    <p class="title">Family Sponsorship Expert</p>
+                    <p class="bio">Specializes in spousal, parent and dependent child sponsorship cases. Spanish speaker.</p>
+                    <div class="expertise">
+                        <span class="expertise-tag">Spousal</span>
+                        <span class="expertise-tag">Parents</span>
+                        <span class="expertise-tag">Dependents</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container">
+            <h2>Common Contact Questions</h2>
+            <div class="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question">Do you charge for consultations?</button>
+                    <div class="faq-answer">
+                        <p>We offer a free 15-minute initial consultation to assess your situation and determine how we can help. For more in-depth consultations (30-60 minutes), we charge a fee that can be applied toward future services if you choose to work with us.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">What information should I prepare before contacting you?</button>
+                    <div class="faq-answer">
+                        <p>For the most productive consultation, please have available: your passport details, education credentials, work experience details, language test results (if any), and any previous immigration applications or refusals.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">Can you guarantee my application will be approved?</button>
+                    <div class="faq-answer">
+                        <p>No reputable immigration consultant can guarantee approval as all decisions are made by IRCC officers. However, we can ensure your application is complete, accurate, and presents your case in the strongest possible way.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">How are your fees structured?</button>
+                    <div class="faq-answer">
+                        <p>Our fees vary depending on the complexity of your case and the services required. We offer transparent pricing with no hidden fees. After our initial assessment, we'll provide a detailed fee estimate before you commit to anything.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <img src="1.png" alt="Canada Logo">
+                        
+                    </div>
+                    <p>Your trusted resource for Canadian immigration information and tools.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="Programs.html"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                        <li><a href="Points-Calculator.html"><i class="fas fa-chevron-right"></i> Points Calculator</a></li>
+                        <li><a href="Resources.html"><i class="fas fa-chevron-right"></i> Resources</a></li>
+                        <li><a href="Contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Disclaimer</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@canadaimmigrationportal.com">info@canadaimmigrationportal.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+18001234567">+1 (800) 123-4567</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Immigration Rd<br>Ottawa, ON</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Canada Immigration Portal. All rights reserved.</p>
+                <p class="disclaimer">Disclaimer: This website is not affiliated with the Government of Canada. For official information, please visit <a href="https://www.canada.ca" target="_blank">canada.ca</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

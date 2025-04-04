@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canadian Immigration Programs | Canada Immigration Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <img src="1.png
+" alt="Canada Immigration Logo">
+                <h2>Canada Immigration Portal</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Programs.html" class="active">Programs</a></li>
+                    <li><a href="Points-Calculator.html">Points Calculator</a></li>
+                    <li><a href="Resources.html">Resources</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-hero">
+        <div class="container">
+            <h1>Canadian Immigration Programs</h1>
+            <p>Explore all pathways to permanent residency in Canada</p>
+        </div>
+    </section>
+
+    <section class="programs-section">
+        <div class="container">
+            <div class="program-tabs">
+                <button class="tab-btn active" data-tab="express-entry">Express Entry</button>
+                <button class="tab-btn" data-tab="pnp">Provincial Nominee</button>
+                <button class="tab-btn" data-tab="family">Family Sponsorship</button>
+                <button class="tab-btn" data-tab="other">Other Programs</button>
+            </div>
+
+            <div class="tab-content active" id="express-entry">
+                <h2>Express Entry System</h2>
+                <p>Canada's flagship immigration management system for skilled workers. It includes three main programs:</p>
+                
+                <div class="program-cards">
+                    <div class="program-card">
+                        <h3>Federal Skilled Worker Program</h3>
+                        <ul>
+                            <li>For skilled workers with foreign work experience</li>
+                            <li>Minimum 1 year continuous full-time work experience</li>
+                            <li>Language proficiency required (CLB 7)</li>
+                            <li>Education assessment required</li>
+                        </ul>
+                        <a href="#" class="btn btn-small">Learn More</a>
+                    </div>
+                    <div class="program-card">
+                        <h3>Federal Skilled Trades Program</h3>
+                        <ul>
+                            <li>For qualified tradespersons</li>
+                            <li>Minimum 2 years full-time work experience</li>
+                            <li>Valid job offer or certificate of qualification</li>
+                            <li>Language proficiency required (CLB 5)</li>
+                        </ul>
+                        <a href="#" class="btn btn-small">Learn More</a>
+                    </div>
+                    <div class="program-card">
+                        <h3>Canadian Experience Class</h3>
+                        <ul>
+                            <li>For those with Canadian work experience</li>
+                            <li>Minimum 1 year skilled work in Canada</li>
+                            <li>Language proficiency required (CLB 7 for TEER 0/1, CLB 5 for TEER 2/3)</li>
+                            <li>No education requirement</li>
+                        </ul>
+                        <a href="#" class="btn btn-small">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="pnp">
+                <h2>Provincial Nominee Programs (PNP)</h2>
+                <p>Each Canadian province and territory (except Quebec) has its own immigration programs targeting specific local labor market needs.</p>
+                
+                <div class="province-selector">
+                    <select id="province-select">
+                        <option value="">Select a Province/Territory</option>
+                        <option value="ab">Alberta</option>
+                        <option value="bc">British Columbia</option>
+                        <option value="mb">Manitoba</option>
+                        <option value="nb">New Brunswick</option>
+                        <option value="nl">Newfoundland and Labrador</option>
+                        <option value="ns">Nova Scotia</option>
+                        <option value="on">Ontario</option>
+                        <option value="pe">Prince Edward Island</option>
+                        <option value="sk">Saskatchewan</option>
+                        <option value="nt">Northwest Territories</option>
+                        <option value="nu">Nunavut</option>
+                        <option value="yt">Yukon</option>
+                    </select>
+                </div>
+                
+                <div class="province-info" id="province-info">
+                    <p>Select a province or territory to view its specific immigration programs.</p>
+                </div>
+            </div>
+
+            <div class="tab-content" id="family">
+                <h2>Family Sponsorship Programs</h2>
+                <p>Canadian citizens and permanent residents can sponsor certain family members to come to Canada.</p>
+                
+                <div class="program-cards">
+                    <div class="program-card">
+                        <h3>Spouse/Partner Sponsorship</h3>
+                        <ul>
+                            <li>Sponsor your spouse, common-law or conjugal partner</li>
+                            <li>Minimum 3 year undertaking period</li>
+                            <li>Sponsor must meet income requirements</li>
+                        </ul>
+                        <a href="#" class="btn btn-small">Learn More</a>
+                    </div>
+                    <div class="program-card">
+                        <h3>Parent/Grandparent Sponsorship</h3>
+                        <ul>
+                            <li>Sponsor your parents and grandparents</li>
+                            <li>Limited application spots each year</li>
+                            <li>Strict income requirements</li>
+                            <li>20 year undertaking period</li>
+                        </ul>
+                        <a href="#" class="btn btn-small">Learn More</a>
+                    </div>
+                    <div class="program-card">
+                        <h3>Other Family Members</h3>
+                        <ul>
+                            <li>Dependent children (including adopted)</li>
+                            <li>Orphaned relatives under 18</li>
+                            <li>Other relatives under specific circumstances</li>
+                        </ul>
+                        <a href="#" class="btn btn-small">Learn More</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-content" id="other">
+                <h2>Other Immigration Programs</h2>
+                
+                <div class="program-cards">
+                    <div class="program-card">
+                        <h3>Quebec-Selected Programs</h3>
+                        <ul>
+                            <li>Quebec has its own immigration system</li>
+                            <li>Includes skilled worker and business programs</li>
+                            <li>French language proficiency often required</li>
+                        </ul>
+                        <a href="#" class="btn btn-small">Learn More</a>
+                    </div>
+                    <div class="program-card">
+                        <h3>Atlantic Immigration Program</h3>
+                        <ul>
+                            <li>For Atlantic provinces: NB, NL, NS, PE</li>
+                            <li>Employer-driven program</li>
+                            <li>Three categories: High/Intermediate/Low skill</li>
+                        </ul>
+                        <a href="#" class="btn btn-small">Learn More</a>
+                    </div>
+                    <div class="program-card">
+                        <h3>Caregiver Programs</h3>
+                        <ul>
+                            <li>Home Child Care Provider Pilot</li>
+                            <li>Home Support Worker Pilot</li>
+                            <li>Pathway to permanent residence</li>
+                        </ul>
+                        <a href="#" class="btn btn-small">Learn More</a>
+                    </div>
+                    <div class="program-card">
+                        <h3>Business Immigration</h3>
+                        <ul>
+                            <li>Start-Up Visa Program</li>
+                            <li>Self-Employed Persons Program</li>
+                            <li>Various provincial business programs</li>
+                        </ul>
+                        <a href="#" class="btn btn-small">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="program-comparison">
+        <div class="container">
+            <h2>Program Comparison</h2>
+            <div class="comparison-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Program</th>
+                            <th>Processing Time</th>
+                            <th>Language Requirement</th>
+                            <th>Work Experience</th>
+                            <th>Job Offer Required</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Federal Skilled Worker</td>
+                            <td>6-12 months</td>
+                            <td>CLB 7</td>
+                            <td>1 year</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>Canadian Experience Class</td>
+                            <td>3-6 months</td>
+                            <td>CLB 7 (TEER 0/1)<br>CLB 5 (TEER 2/3)</td>
+                            <td>1 year in Canada</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td>Provincial Nominee</td>
+                            <td>6-18 months</td>
+                            <td>Varies</td>
+                            <td>Varies</td>
+                            <td>Often</td>
+                        </tr>
+                        <tr>
+                            <td>Family Sponsorship</td>
+                            <td>12-24 months</td>
+                            <td>CLB 4 (spouses)</td>
+                            <td>None</td>
+                            <td>No</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Not Sure Which Program is Right For You?</h2>
+            <p>Take our quick assessment to find the best immigration pathway for your situation.</p>
+            <a href="Points-Calculator.html" class="btn btn-large">Start Free Assessment</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <img src="1.png" alt="Canada Logo">
+                        
+                    </div>
+                    <p>Your trusted resource for Canadian immigration information and tools.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="Programs.html"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                        <li><a href="Points-Calculator.html"><i class="fas fa-chevron-right"></i> Points Calculator</a></li>
+                        <li><a href="Resources.html"><i class="fas fa-chevron-right"></i> Resources</a></li>
+                        <li><a href="Contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Disclaimer</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@canadaimmigrationportal.com">info@canadaimmigrationportal.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+18001234567">+1 (800) 123-4567</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Immigration Rd<br>Ottawa, ON</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Canada Immigration Portal. All rights reserved.</p>
+                <p class="disclaimer">Disclaimer: This website is not affiliated with the Government of Canada. For official information, please visit <a href="https://www.canada.ca" target="_blank">canada.ca</a>.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
