@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alberta CRS Calculator | Canada Immigration Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #61CE70;
+            --primary-dark: #4CAF50;
+            --secondary-color: #2E86AB;
+            --accent-color: #F18F01;
+            --text-color: #333;
+            --text-light: #777;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --dark: #222;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+            --footer-bg: #1a1a1a;
+            --footer-text: #ccc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        nav a:hover:after, nav a.active:after {
+            width: 100%;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 152, 219, 0.8) 100%), url('https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1201&q=80') no-repeat center center/cover;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--secondary-color);
+        }
+        
+        /* Calculator Section */
+        .calculator-section {
+            padding: 80px 0;
+        }
+        
+        .calculator-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .calculator-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .calculator-intro h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .calculator-form {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        
+        .form-section {
+            margin-bottom: 30px;
+        }
+        
+        .form-section h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-group select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+            background-color: var(--white);
+        }
+        
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(46, 134, 171, 0.2);
+        }
+        
+        .calculate-btn {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            padding: 15px 30px;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: block;
+            margin: 40px auto;
+            width: 100%;
+            max-width: 300px;
+        }
+        
+        .calculate-btn:hover {
+            background-color: var(--primary-color);
+        }
+        
+        .results-container {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .results-score {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin: 20px 0;
+        }
+        
+        .results-message {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        
+        .eligibility-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        
+        .eligible {
+            background-color: rgba(97, 206, 112, 0.2);
+            color: var(--primary-dark);
+        }
+        
+        .next-steps {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+        }
+        
+        .next-steps h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .next-steps ul {
+            list-style-type: none;
+        }
+        
+        .next-steps li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .next-steps li:before {
+            content: "✔";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.3rem;
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-col a i {
+            font-size: 0.8rem;
+        }
+        
+        .footer-col a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item i {
+            color: var(--secondary-color);
+            margin-top: 3px;
+        }
+        
+        .contact-item a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+        
+        .contact-item a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom .disclaimer {
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .footer-bottom a {
+            color: var(--secondary-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .calculator-form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="1.png" alt="Canada Immigration Logo">
+                <h2>Canada Immigration Portal</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Programs.html">Programs</a></li>
+                    <li><a href="Points-Calculator.html" class="active">Points Calculator</a></li>
+                    <li><a href="Resources.html">Resources</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Alberta CRS Calculator</h1>
+            <p>Determine your eligibility for the Alberta Immigrant Nominee Program (AINP) by calculating your Comprehensive Ranking System score.</p>
+        </div>
+    </section>
+
+    <section class="calculator-section">
+        <div class="container calculator-container">
+            <div class="calculator-intro">
+                <h2>Alberta Express Entry CRS Calculator</h2>
+                <p>Estimate your Comprehensive Ranking System (CRS) score to determine your eligibility for the Alberta Express Entry Stream.</p>
+            </div>
+            
+            <div class="calculator-form">
+                <div class="form-section">
+                    <h3>Core Human Capital Factors</h3>
+                    
+                    <div class="form-group">
+                        <label for="age">Age:</label>
+                        <select id="age">
+                            <option value="0">Under 18 (0 points)</option>
+                            <option value="100" selected>18-35 years (100 points)</option>
+                            <option value="95">36 years (95 points)</option>
+                            <option value="90">37 years (90 points)</option>
+                            <option value="85">38 years (85 points)</option>
+                            <option value="80">39 years (80 points)</option>
+                            <option value="75">40 years (75 points)</option>
+                            <option value="70">41 years (70 points)</option>
+                            <option value="65">42 years (65 points)</option>
+                            <option value="60">43 years (60 points)</option>
+                            <option value="55">44 years (55 points)</option>
+                            <option value="50">45 years (50 points)</option>
+                            <option value="0">46 years or older (0 points)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="education">Education Level:</label>
+                        <select id="education">
+                            <option value="30">High School (30 points)</option>
+                            <option value="90">1-Year Diploma (90 points)</option>
+                            <option value="120" selected>Bachelor's Degree (120 points)</option>
+                            <option value="150">Master's or PhD (150 points)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="language">Official Language Proficiency (CLB):</label>
+                        <select id="language">
+                            <option value="24">CLB 4 (6 per skill × 4 = 24 points)</option>
+                            <option value="92" selected>CLB 8 (23 per skill × 4 = 92 points)</option>
+                            <option value="136">CLB 10+ (34 per skill × 4 = 136 points)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="experience">Canadian Work Experience:</label>
+                        <select id="experience">
+                            <option value="0">None (0 points)</option>
+                            <option value="40" selected>1 Year (40 points)</option>
+                            <option value="80">3+ Years (80 points)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Additional Factors (Alberta-Specific)</h3>
+                    
+                    <div class="form-group">
+                        <label for="jobOffer">Job Offer in Alberta:</label>
+                        <select id="jobOffer">
+                            <option value="0" selected>No (0 points)</option>
+                            <option value="200">Yes (+200 points)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="albertaEducation">Alberta Education Credential:</label>
+                        <select id="albertaEducation">
+                            <option value="0" selected>No (0 points)</option>
+                            <option value="30">Yes (+30 points)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="albertaRelative">Alberta Relative (PR/Citizen):</label>
+                        <select id="albertaRelative">
+                            <option value="0" selected>No (0 points)</option>
+                            <option value="20">Yes (+20 points)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="french">French Proficiency (CLB 7+):</label>
+                        <select id="french">
+                            <option value="0" selected>No (0 points)</option>
+                            <option value="25">Yes (+25 points)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="form-section">
+                    <h3>Spouse/Common-Law Factors (If Applicable)</h3>
+                    
+                    <div class="form-group">
+                        <label for="spouseLanguage">Language Proficiency:</label>
+                        <select id="spouseLanguage">
+                            <option value="0" selected>No (0 points)</option>
+                            <option value="20">Yes (+20 points)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="spouseExperience">Canadian Work Experience:</label>
+                        <select id="spouseExperience">
+                            <option value="0" selected>No (0 points)</option>
+                            <option value="10">Yes (+10 points)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="spouseEducation">Education Level:</label>
+                        <select id="spouseEducation">
+                            <option value="0" selected>No (0 points)</option>
+                            <option value="10">Yes (+10 points)</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <button class="calculate-btn" onclick="calculateCRS()">Calculate My CRS Score</button>
+            </div>
+            
+            <div class="results-container" id="result" style="display: none;">
+                <h3>Your Alberta CRS Score</h3>
+                <div class="results-score" id="score">0</div>
+                <div class="results-message" id="message"></div>
+            </div>
+            
+            <div class="next-steps">
+                <h3>Next Steps Based on Your Score</h3>
+                <ul>
+                    <li><span class="highlight">400+ CRS</span>: Good chance for Alberta nomination</li>
+                    <li><span class="highlight">300-399 CRS</span>: May qualify under AINP if occupation is in demand</li>
+                    <li><span class="highlight">Below 300 CRS</span>: Improve score (language test, work experience, education)</li>
+                </ul>
+                <p style="margin-top: 20px; font-weight: 600;">Alberta conducts frequent draws—check your eligibility regularly!</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <img src="1.png" alt="Canada Logo">
+                        <h3>Canada Immigration Portal</h3>
+                    </div>
+                    <p>Your trusted resource for Canadian immigration information and tools.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="Programs.html"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                        <li><a href="Points-Calculator.html"><i class="fas fa-chevron-right"></i> Points Calculator</a></li>
+                        <li><a href="Resources.html"><i class="fas fa-chevron-right"></i> Resources</a></li>
+                        <li><a href="Contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Disclaimer</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@canadaimmigrationportal.com">info@canadaimmigrationportal.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+18001234567">+1 (800) 123-4567</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Immigration Rd<br>Ottawa, ON</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Canada Immigration Portal. All rights reserved.</p>
+                <p class="disclaimer">Disclaimer: This website is not affiliated with the Government of Canada or the Government of Alberta. For official information, please visit <a href="https://www.alberta.ca/ainp.aspx" target="_blank">alberta.ca/ainp</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function calculateCRS() {
+            // Core Factors
+            const age = parseInt(document.getElementById('age').value);
+            const education = parseInt(document.getElementById('education').value);
+            const language = parseInt(document.getElementById('language').value);
+            const experience = parseInt(document.getElementById('experience').value);
+            
+            // Additional Factors
+            const jobOffer = parseInt(document.getElementById('jobOffer').value);
+            const albertaEducation = parseInt(document.getElementById('albertaEducation').value);
+            const albertaRelative = parseInt(document.getElementById('albertaRelative').value);
+            const french = parseInt(document.getElementById('french').value);
+            
+            // Spouse Factors
+            const spouseLanguage = parseInt(document.getElementById('spouseLanguage').value);
+            const spouseExperience = parseInt(document.getElementById('spouseExperience').value);
+            const spouseEducation = parseInt(document.getElementById('spouseEducation').value);
+            
+            // Calculate Total
+            const total = age + education + language + experience + 
+                          jobOffer + albertaEducation + albertaRelative + french + 
+                          spouseLanguage + spouseExperience + spouseEducation;
+            
+            // Display Result
+            document.getElementById('score').textContent = total;
+            document.getElementById('result').style.display = 'block';
+            
+            // Set message based on score
+            let message = "";
+            if (total >= 400) {
+                message = "Excellent! You have a strong chance for Alberta nomination.";
+            } else if (total >= 300) {
+                message = "Good score! You may qualify if your occupation is in demand.";
+            } else {
+                message = "Consider improving your score through language tests, work experience, or education.";
+            }
+            document.getElementById('message').textContent = message;
+            
+            // Scroll to result
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
