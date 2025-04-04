@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nova Scotia Immigration | Canada Immigration Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #61CE70;
+            --primary-dark: #4CAF50;
+            --secondary-color: #2E86AB;
+            --accent-color: #F18F01;
+            --text-color: #333;
+            --text-light: #777;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --dark: #222;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+            --footer-bg: #1a1a1a;
+            --footer-text: #ccc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        nav a:hover:after, nav a.active:after {
+            width: 100%;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 152, 219, 0.8) 100%), url('https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1201&q=80') no-repeat center center/cover;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--secondary-color);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--secondary-color);
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary-color);
+            color: var(--white);
+        }
+        
+        /* Content Section */
+        .content-section {
+            padding: 80px 0;
+            background-color: var(--white);
+        }
+        
+        .content-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .content-intro {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .content-intro h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .programs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .program-card {
+            background-color: var(--bg-light);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .program-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .program-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        
+        .program-card p {
+            margin-bottom: 20px;
+        }
+        
+        .highlight-box {
+            background-color: rgba(46, 134, 171, 0.1);
+            border-left: 4px solid var(--secondary-color);
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .highlight-box h4 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .requirements-list {
+            list-style-type: none;
+            margin: 20px 0;
+        }
+        
+        .requirements-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .requirements-list li:before {
+            content: "✓";
+            color: var(--primary-color);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        .process-steps {
+            margin: 40px 0;
+        }
+        
+        .step {
+            display: flex;
+            margin-bottom: 30px;
+            align-items: flex-start;
+        }
+        
+        .step-number {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            font-weight: bold;
+        }
+        
+        .step-content {
+            flex: 1;
+        }
+        
+        .step-content h4 {
+            margin-bottom: 10px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        /* FAQ Section */
+        .faq-section {
+            padding: 60px 0;
+            background-color: var(--bg-light);
+        }
+        
+        .faq-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+        }
+        
+        .faq-answer {
+            margin-top: 15px;
+            display: none;
+        }
+        
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.3rem;
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-col a i {
+            font-size: 0.8rem;
+        }
+        
+        .footer-col a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item i {
+            color: var(--secondary-color);
+            margin-top: 3px;
+        }
+        
+        .contact-item a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+        
+        .contact-item a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom .disclaimer {
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .footer-bottom a {
+            color: var(--secondary-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="1.png" alt="Canada Immigration Logo">
+                <h2>Canada Immigration Portal</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Programs.html">Programs</a></li>
+                    <li><a href="Points-Calculator.html">Points Calculator</a></li>
+                    <li><a href="Resources.html" class="active">Resources</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Nova Scotia Immigration Programs</h1>
+            <p>Discover pathways to permanent residency through the Nova Scotia Nominee Program (NSNP) and Atlantic Immigration Program (AIP).</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container content-container">
+            <div class="content-intro">
+                <h2>Immigrate to Nova Scotia</h2>
+                <p>Nova Scotia offers several immigration pathways for skilled workers, international graduates, and entrepreneurs looking to settle in Canada's ocean playground.</p>
+            </div>
+            
+            <div class="highlight-box">
+                <h4>Why Choose Nova Scotia?</h4>
+                <p>Nova Scotia offers a high quality of life with affordable housing, excellent healthcare, world-class education, and stunning natural beauty. The province has a thriving economy with opportunities in healthcare, IT, ocean technology, and more.</p>
+            </div>
+            
+            <h3>Nova Scotia Immigration Programs</h3>
+            <div class="programs-grid">
+                <div class="program-card">
+                    <h3>Nova Scotia Experience: Express Entry</h3>
+                    <p>For temporary foreign workers with at least 1 year of skilled work experience in Nova Scotia. Requires a valid Express Entry profile.</p>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+                
+                <div class="program-card">
+                    <h3>Nova Scotia Labour Market Priorities</h3>
+                    <p>Targets specific occupations in demand. Candidates must have an Express Entry profile and meet the criteria of specific draws.</p>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+                
+                <div class="program-card">
+                    <h3>Physician Stream</h3>
+                    <p>For physicians offered employment by Nova Scotia Health Authority or IWK Health Centre. No job offer needed for family physicians.</p>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+                
+                <div class="program-card">
+                    <h3>Entrepreneur Stream</h3>
+                    <p>For experienced business owners/entrepreneurs who want to establish a business in Nova Scotia. Requires $150,000 net worth and $150,000 investment.</p>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+                
+                <div class="program-card">
+                    <h3>International Graduate Entrepreneur Stream</h3>
+                    <p>For international graduates who want to start a business in Nova Scotia. Requires graduation from a Nova Scotia university/college.</p>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+                
+                <div class="program-card">
+                    <h3>Atlantic Immigration Program (AIP)</h3>
+                    <p>Employer-driven program for intermediate and high-skilled workers and international graduates in Atlantic Canada.</p>
+                    <a href="#" class="btn btn-secondary">Learn More</a>
+                </div>
+            </div>
+            
+            <div class="process-steps">
+                <h3>How to Apply for Nova Scotia Nomination</h3>
+                
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Determine Eligibility</h4>
+                        <p>Check which NSNP stream matches your qualifications and experience.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Gather Documents</h4>
+                        <p>Prepare all required documents including language tests, educational credentials, and work references.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Submit Application</h4>
+                        <p>Apply to the NSNP when the stream is open. Some streams require an Expression of Interest.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h4>Receive Nomination</h4>
+                        <p>If approved, you'll receive a provincial nomination which gives you 600 additional CRS points.</p>
+                    </div>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h4>Apply for PR</h4>
+                        <p>Submit your permanent residence application to IRCC within 6 months of nomination.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="action-buttons">
+                <a href="Points-Calculator.html" class="btn btn-primary">Check Your Eligibility</a>
+                <a href="Contact.html" class="btn btn-secondary">Consult an Immigration Expert</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="faq-section">
+        <div class="container faq-container">
+            <h2 style="text-align: center; margin-bottom: 40px;">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is the processing time for Nova Scotia PNP?</span>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>NSNP processing times vary by stream but typically take 3-6 months for nomination. After nomination, federal processing takes an additional 6-12 months.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Do I need a job offer for Nova Scotia PNP?</span>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Most NSNP streams require a valid job offer from a Nova Scotia employer, except the International Graduate Entrepreneur Stream and Physician Stream (for family physicians).</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is the minimum CRS score needed for Nova Scotia?</span>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Nova Scotia typically invites candidates with CRS scores between 300-500, depending on the stream and current labor market needs.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Can I apply if I'm already in Canada?</span>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, many NSNP streams accept applicants already in Canada, particularly the Nova Scotia Experience: Express Entry stream for those with Nova Scotia work experience.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How often does Nova Scotia hold PNP draws?</span>
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Nova Scotia conducts draws throughout the year, typically every 1-2 months, depending on program quotas and labor market needs.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <img src="1.png" alt="Canada Logo">
+                        <h3>Canada Immigration Portal</h3>
+                    </div>
+                    <p>Your trusted resource for Canadian immigration information and tools.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="Programs.html"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                        <li><a href="Points-Calculator.html"><i class="fas fa-chevron-right"></i> Points Calculator</a></li>
+                        <li><a href="Resources.html"><i class="fas fa-chevron-right"></i> Resources</a></li>
+                        <li><a href="Contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Disclaimer</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@canadaimmigrationportal.com">info@canadaimmigrationportal.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+18001234567">+1 (800) 123-4567</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Immigration Rd<br>Ottawa, ON</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Canada Immigration Portal. All rights reserved.</p>
+                <p class="disclaimer">Disclaimer: This website is not affiliated with the Government of Canada or the Government of Nova Scotia. For official information, please visit <a href="https://novascotiaimmigration.com" target="_blank">novascotiaimmigration.com</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+        
+        // FAQ toggle functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('active');
+                const icon = this.querySelector('.faq-question i');
+                if (this.classList.contains('active')) {
+                    icon.classList.remove('fa-plus');
+                    icon.classList.add('fa-minus');
+                } else {
+                    icon.classList.remove('fa-minus');
+                    icon.classList.add('fa-plus');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
