@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Super Visa Canada | Canada Immigration Portal</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #61CE70;
+            --primary-dark: #4CAF50;
+            --secondary-color: #2E86AB;
+            --accent-color: #F18F01;
+            --text-color: #333;
+            --text-light: #777;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --dark: #222;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --radius: 8px;
+            --transition: all 0.3s ease;
+            --footer-bg: #1a1a1a;
+            --footer-text: #ccc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--bg-light);
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 600;
+            line-height: 1.2;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 40px;
+        }
+        
+        .logo h2 {
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            font-size: 1rem;
+            position: relative;
+            transition: var(--transition);
+        }
+        
+        nav a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: var(--transition);
+        }
+        
+        nav a:hover:after, nav a.active:after {
+            width: 100%;
+        }
+        
+        nav a:hover, nav a.active {
+            color: var(--secondary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9) 0%, rgba(52, 152, 219, 0.8) 100%), url('https://images.unsplash.com/photo-1517935706615-2717063c2225?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1201&q=80') no-repeat center center/cover;
+            color: var(--white);
+            padding: 100px 0;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+            text-align: center;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border: 2px solid var(--secondary-color);
+        }
+        
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--secondary-color);
+        }
+        
+        /* Content Sections */
+        .content-section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .card-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .card {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+        
+        .card h3 {
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .requirements-list {
+            background-color: var(--white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 50px;
+        }
+        
+        .requirements-list h3 {
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .requirements-list ul {
+            list-style-type: none;
+        }
+        
+        .requirements-list li {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .requirements-list li:before {
+            content: "•";
+            color: var(--primary-color);
+            position: absolute;
+            left: 0;
+            font-size: 1.5rem;
+            line-height: 1;
+        }
+        
+        .highlight-box {
+            background-color: rgba(97, 206, 112, 0.1);
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+        
+        .highlight {
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .process-steps {
+            counter-reset: step-counter;
+        }
+        
+        .process-step {
+            position: relative;
+            padding-left: 80px;
+            margin-bottom: 40px;
+        }
+        
+        .process-step:before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 60px;
+            height: 60px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        
+        .process-step h3 {
+            color: var(--secondary-color);
+            margin-bottom: 10px;
+        }
+        
+        .text-center {
+            text-align: center;
+        }
+        
+        /* FAQ Section */
+        .faq-item {
+            margin-bottom: 20px;
+            background-color: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            padding: 20px;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            cursor: pointer;
+            position: relative;
+            font-weight: 600;
+        }
+        
+        .faq-question:after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+        
+        .faq-question.active:after {
+            content: '-';
+        }
+        
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        
+        .faq-answer.show {
+            padding: 20px;
+            max-height: 500px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--white);
+            padding: 60px 0 0;
+        }
+        
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-logo img {
+            height: 40px;
+        }
+        
+        .footer-logo h3 {
+            font-size: 1.3rem;
+        }
+        
+        .footer-about p {
+            margin-bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: var(--white);
+            background-color: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h4:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-col a i {
+            font-size: 0.8rem;
+        }
+        
+        .footer-col a:hover {
+            color: var(--white);
+            padding-left: 5px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .contact-item i {
+            color: var(--secondary-color);
+            margin-top: 3px;
+        }
+        
+        .contact-item a {
+            color: rgba(255, 255, 255, 0.7);
+            transition: var(--transition);
+        }
+        
+        .contact-item a:hover {
+            color: var(--white);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 0;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        .footer-bottom .disclaimer {
+            margin-top: 10px;
+            font-size: 0.8rem;
+        }
+        
+        .footer-bottom a {
+            color: var(--secondary-color);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .process-step {
+                padding-left: 60px;
+            }
+            
+            .process-step:before {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="1.png" alt="Canada Immigration Logo">
+                <h2>Canada Immigration Portal</h2>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="Programs.html">Programs</a></li>
+                    <li><a href="Points-Calculator.html">Points Calculator</a></li>
+                    <li><a href="Resources.html" class="active">Resources</a></li>
+                    <li><a href="Contact.html">Contact</a></li>
+                </ul>
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Canada Super Visa</h1>
+            <p>Bring your parents and grandparents to Canada for extended visits with the Parent and Grandparent Super Visa program.</p>
+        </div>
+    </section>
+
+    <section class="content-section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Super Visa Canada</h2>
+                <p>The Super Visa allows parents and grandparents of Canadian citizens or permanent residents to visit for up to 5 years at a time.</p>
+            </div>
+            
+            <div class="card-container">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-calendar-alt"></i>
+                    </div>
+                    <h3>Longer Stays</h3>
+                    <p>Super Visa holders can stay in Canada for up to 5 years per visit, compared to 6 months with a regular visitor visa.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <h3>Multiple Entries</h3>
+                    <p>The Super Visa is valid for up to 10 years and allows for multiple entries into Canada during that period.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-file-medical"></i>
+                    </div>
+                    <h3>Medical Insurance</h3>
+                    <p>Applicants must have Canadian medical insurance coverage for at least 1 year with $100,000 emergency coverage.</p>
+                </div>
+            </div>
+            
+            <div class="requirements-list">
+                <h3>Super Visa Requirements</h3>
+                <ul>
+                    <li>The applicant must be the parent or grandparent of a Canadian citizen or permanent resident</li>
+                    <li>A signed letter of invitation from the child or grandchild in Canada</li>
+                    <li>Proof that the child/grandchild meets the minimum necessary income (LICO)</li>
+                    <li>Medical insurance from a Canadian company with at least $100,000 coverage</li>
+                    <li>Immigration medical exam completed by an approved panel physician</li>
+                    <li>Proof that the applicant will leave Canada at the end of their stay</li>
+                </ul>
+                
+                <div class="highlight-box">
+                    <h4>Minimum Necessary Income (LICO)</h4>
+                    <p>The child or grandchild in Canada must prove they meet the minimum income requirements based on family size. For example:</p>
+                    <ul>
+                        <li>1 person (sponsor only): $27,514</li>
+                        <li>2 persons: $34,254</li>
+                        <li>3 persons: $42,100</li>
+                        <li>4 persons: $51,128</li>
+                    </ul>
+                    <p>Income can be proven with Notice of Assessment, T4 slips, or employment letters.</p>
+                </div>
+            </div>
+            
+            <h2 class="text-center" style="margin-bottom: 30px;">Super Visa Application Process</h2>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <h3>Gather Documents</h3>
+                    <p>Collect all required documents including proof of relationship, invitation letter, financial documents, and medical insurance.</p>
+                </div>
+                
+                <div class="process-step">
+                    <h3>Complete Application</h3>
+                    <p>Fill out the application forms (IMM 5257 and IMM 5645) and pay the processing fee ($100 CAD).</p>
+                </div>
+                
+                <div class="process-step">
+                    <h3>Medical Exam</h3>
+                    <p>Complete an immigration medical exam with an approved panel physician.</p>
+                </div>
+                
+                <div class="process-step">
+                    <h3>Submit Application</h3>
+                    <p>Submit your application online or through a Visa Application Centre (VAC).</p>
+                </div>
+                
+                <div class="process-step">
+                    <h3>Biometrics</h3>
+                    <p>Provide fingerprints and photo (biometrics) if required.</p>
+                </div>
+                
+                <div class="process-step">
+                    <h3>Decision</h3>
+                    <p>Wait for processing (typically 3-4 months) and receive decision on your application.</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#" class="btn btn-primary">Start Your Super Visa Application</a>
+            </div>
+        </div>
+    </section>
+    
+    <section class="content-section" style="background-color: var(--bg-light);">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 40px;">Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    How long is the Super Visa valid?
+                </div>
+                <div class="faq-answer">
+                    <p>The Super Visa is typically valid for up to 10 years, allowing multiple entries. However, each stay in Canada can be up to 5 years at a time. The border officer will determine the exact length of stay when you arrive in Canada.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Can I work in Canada with a Super Visa?
+                </div>
+                <div class="faq-answer">
+                    <p>No, the Super Visa does not allow you to work in Canada. It is strictly a visitor visa for parents and grandparents. If you wish to work, you would need to apply for a work permit separately.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Can I extend my Super Visa stay?
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, you may apply to extend your stay as a visitor while in Canada. You should apply at least 30 days before your authorized stay expires. You'll need to continue meeting the requirements including maintaining valid medical insurance.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    What's the difference between Super Visa and Parent Sponsorship?
+                </div>
+                <div class="faq-answer">
+                    <p>The Super Visa is a temporary resident visa allowing extended visits, while Parent Sponsorship is a permanent residence program. Super Visa processing is faster (months vs. years) but doesn't lead to permanent status. Many families use the Super Visa while waiting for sponsorship applications to process.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    Can I include my dependents in a Super Visa application?
+                </div>
+                <div class="faq-answer">
+                    <p>No, the Super Visa is only for parents and grandparents. Each person must apply separately. Spouses and dependent children cannot be included in a Super Visa application and would need to apply for regular visitor visas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-about">
+                    <div class="footer-logo">
+                        <img src="1.png" alt="Canada Logo">
+                        <h3>Canada Immigration Portal</h3>
+                    </div>
+                    <p>Your trusted resource for Canadian immigration information and tools.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="Programs.html"><i class="fas fa-chevron-right"></i> Programs</a></li>
+                        <li><a href="Points-Calculator.html"><i class="fas fa-chevron-right"></i> Points Calculator</a></li>
+                        <li><a href="Resources.html"><i class="fas fa-chevron-right"></i> Resources</a></li>
+                        <li><a href="Contact.html"><i class="fas fa-chevron-right"></i> Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h4>Legal</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Privacy Policy</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Terms of Service</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Disclaimer</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col footer-contact">
+                    <h4>Contact Us</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:info@canadaimmigrationportal.com">info@canadaimmigrationportal.com</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+18001234567">+1 (800) 123-4567</a>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>123 Immigration Rd<br>Ottawa, ON</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 Canada Immigration Portal. All rights reserved.</p>
+                <p class="disclaimer">Disclaimer: This website is not affiliated with the Government of Canada. For official information, please visit <a href="https://www.canada.ca" target="_blank">canada.ca</a>.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFAQ(element) {
+            element.classList.toggle('active');
+            const answer = element.nextElementSibling;
+            answer.classList.toggle('show');
+        }
+        
+        // Initialize first FAQ as open
+        document.addEventListener('DOMContentLoaded', function() {
+            const firstQuestion = document.querySelector('.faq-question');
+            if (firstQuestion) {
+                firstQuestion.classList.add('active');
+                firstQuestion.nextElementSibling.classList.add('show');
+            }
+        });
+    </script>
+</body>
+</html>
